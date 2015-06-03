@@ -13,7 +13,6 @@ logger = logging.getLogger('collective.pfg.userjoin')
 
 def initialize(context):
     from collective.pfg.userjoin import content
-    from collective.pfg.userjoin import validators
 
     content_types, constructors, ftis = atapi.process_types(
         atapi.listTypes(config.PROJECTNAME),
