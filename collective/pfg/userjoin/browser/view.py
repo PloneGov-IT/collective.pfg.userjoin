@@ -69,11 +69,20 @@ class UserJoinAdapterView(BrowserView, Base):
             properties[userfield] = data[formfield]
         user = api.user.create(username=data.get(context.getUseridField()),
                                email=data.get(context.getEmailField()),
-                               properties=properties)
+                               properties=properties)        
         for g in context.getGroupsToBeAdded():
             api.group.add_user(groupname=g, username=user.getId())
+        # Now reset user password
+        rtool = getToolByName(context, 'portal_registration')
+        try:
+            rtool.mailPassword(user.getId(), self.request, immediate=True)
+        except Exception as e:
+            plone_utils = getToolByName(context, 'plone_utils')
+            plone_utils.addPortalMessage(_('password_reset_issue_message',
+                                           default=u"Unable to perform a password reset for $user: $message",
+                                           mapping={'user': user.getId(), 'message': str(e)}),
+                                         type="warning")
         return user
-
 
     def deleteEntries(self, uids=[]):
         uids = uids or self.request.form.get('uids')

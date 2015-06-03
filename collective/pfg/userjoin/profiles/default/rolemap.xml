@@ -20,6 +20,9 @@
                 acquire="False">
       <role name="Manager"/>
       <role name="Site Administrator"/>
+	  <role name="Owner"/>
+	  <role name="Reader"/>
+	  <role name="Editor"/>
     </permission>
   </permissions>
 </rolemap>
