@@ -13,6 +13,10 @@
       title="collective.pfg.userjoin: Edit Awkward Fields"
       />
   <permission
+      id="collective.pfg.userjoin.permissions.manageJoin"
+      title="collective.pfg.userjoin: Manage Join Attempts"
+      />
+  <permission
       id="collective.pfg.userjoin.permissions.viewSensitiveData"
       title="collective.pfg.userjoin: View Sentive Data"
       />

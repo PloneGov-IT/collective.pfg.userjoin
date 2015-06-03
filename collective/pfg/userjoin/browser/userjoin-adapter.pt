@@ -28,11 +28,12 @@
                         tal:define="items view/items;
 						            ploneview nocall:context/@@plone;">
 
-    <form tal:condition="items">
+    <form tal:condition="items" method="post"
+	      tal:attributes="action string:${context/absolute_url}/${view/__name__}">
     <table id="joinUsers" class="listing">
         <thead><tr>
             <th class="nosort"
-                tal:condition="view/canEditAwkData">
+                tal:condition="view/canManageJoin">
                     <input type="checkbox" id="selectUnselectAll" value="" checked="checked"
                            onclick="javascript:toggleSelect(this, 'uids:int:list', true)"/>
             </th>
@@ -45,7 +46,7 @@
             <tal:row repeat="item items">
             <tr tal:define="uid python:item[0];
                             data python:item[1];">
-                <td tal:condition="view/canEditAwkData"><input type="checkbox" name="uids:int:list" value=""
+                <td tal:condition="view/canManageJoin"><input type="checkbox" name="uids:int:list" value=""
                            tal:attributes="value uid"
                            checked="checked" />
                 </td>
@@ -63,7 +64,7 @@
             </tal:row>
         </tbody>        
     </table>
-	<tal:canedit condition="view/canEditAwkData">
+	<tal:canedit condition="view/canManageJoin">
 	    <input type="hidden" name="form.submitted" value="1" />
 	    <span tal:replace="structure context/@@authenticator/authenticator"/>
 	    <input class="context" type="submit" name="confirm" value="Confirm selected" i18n:attributes="value" />

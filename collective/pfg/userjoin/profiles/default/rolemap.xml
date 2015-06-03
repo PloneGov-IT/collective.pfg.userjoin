@@ -11,6 +11,11 @@
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
+    <permission name="collective.pfg.userjoin: Manage Join Attempts"
+                acquire="False">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+    </permission>
     <permission name="collective.pfg.userjoin: View Sentive Data"
                 acquire="False">
       <role name="Manager"/>

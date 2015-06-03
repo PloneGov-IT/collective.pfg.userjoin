@@ -19,6 +19,7 @@ from Products.DataGridField.SelectColumn import SelectColumn
 from Products.DataGridField.DataGridField import DataGridField
 from Products.DataGridField.DataGridWidget import DataGridWidget
 from DateTime import DateTime
+from plone import api
 
 
 UserJoinAdapterSchema = atapi.Schema((
@@ -149,6 +150,21 @@ class UserJoinAdapter(FormActionAdapter):
     def onSuccess(self, fields, REQUEST=None):
         """Store data in the inner registry"""
         data = {}
+        userid_provided = REQUEST.form.get(self.getUseridField())
+        if userid_provided:
+            rtool = getToolByName(self, 'portal_registration')
+            if api.user.get(username=userid_provided) is not None:
+                return {self.getUseridField(): _('username_already_taken_error',
+                                                 default=u'The username is already in use')}
+            if userid_provided=='Anonymous User' or \
+                    not rtool._ALLOWED_MEMBER_ID_PATTERN.match(userid_provided):
+                return {self.getUseridField(): _('username_invalid_error',
+                                                 default=u'The username is invalid')}            
+            # userid already stored in the registry
+            for v in self._inputStorage.values():
+                if userid_provided==v.get(self.getUseridField()):
+                    return {self.getUseridField(): _('username_already_taken_error',
+                                                     default=u'The username is already in use')}                    
         for field in fields:
             # we do not handle files for now
             if field.isFileField() or field.isLabel():
@@ -161,7 +177,8 @@ class UserJoinAdapter(FormActionAdapter):
             data[field.fgField.getName()] = val
             data['__timestamp__'] = DateTime()
         id = self._addDataRow(data)
-        REQUEST.environ['pfg.userjoin.newid'] = id
+        REQUEST['pfguserjoin_obj'] = self
+        REQUEST['pfguserjoin_newid'] = id
 
 
 registerATCT(UserJoinAdapter, config.PROJECTNAME)

@@ -13,10 +13,15 @@ from plone import api
 
 
 class Base(object):
-    
+
     @memoize
     def canEditAwkData(self):
         return checkPermission('collective.pfg.userjoin.permissions.editFields',
+                               self.context)
+
+    @memoize
+    def canManageJoin(self):
+        return checkPermission('collective.pfg.userjoin.permissions.manageJoin',
                                self.context)
 
 
@@ -26,25 +31,13 @@ class UserJoinAdapterView(BrowserView, Base):
         form = self.request.form
         if 'form.submitted' in form.keys():
             CheckAuthenticator(self.request)
-            if not self.canEditAwkData():
+            if not self.canManageJoin():
                 raise Unauthorized()
             if 'delete' in form.keys():
                 self.deleteEntries()
             elif 'confirm' in form.keys():
                 self.createUsers()
         return self.index()
-
-    def deleteEntries(self, uids=[]):
-        uids = uids or self.request.form.get('uids')
-        context = self.context
-        plone_utils = getToolByName(context, 'plone_utils')
-        for uid in uids:
-            del context._inputStorage[uid]
-            context._inputItems -= 1
-            context._length.change(-1)
-        plone_utils.addPortalMessage(_('entries_deleted_message',
-                                       default=u"${count} elements deleted",
-                                       mapping={'count': len(uids)}))
 
     def createUsers(self):
         uids = self.request.form.get('uids')
@@ -81,8 +74,9 @@ class UserJoinAdapterView(BrowserView, Base):
             api.group.add_user(groupname=g, username=user.getId())
         return user
 
-    def deleteEntries(self):
-        uids = self.request.form.get('uids')
+
+    def deleteEntries(self, uids=[]):
+        uids = uids or self.request.form.get('uids')
         context = self.context
         plone_utils = getToolByName(context, 'plone_utils')
         for uid in uids:
