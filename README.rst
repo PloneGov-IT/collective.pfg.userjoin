@@ -26,7 +26,7 @@ Fields you must include are the ones that ask for the new userid and (probably) 
 The password field is not required (and will not be used) because the adapter will rely onto the Plone
 native password reset feature.
 
-.. image:: https://github.com/PloneGov/collective.pfg.userjoin/blob/---/docs/collective.pfg.userjoin.0.0.1-01.png
+.. image:: https://raw.githubusercontent.com/PloneGov-IT/collective.pfg.userjoin/7ade30d07f94d2e127b780eb0cf2a9cd94a7152a/docs/collective.pfg.userjoin.0.1.0-01.png
    :alt: Form filling example
 
 **Please note** that a captcha protection is probably something you don't want to miss.
@@ -37,7 +37,7 @@ Adapter configuration
 
 Now create the adapter.
 
-.. image:: https://github.com/PloneGov/collective.pfg.userjoin/blob/---/docs/collective.pfg.userjoin.0.0.1-04.png
+.. image:: https://raw.githubusercontent.com/PloneGov-IT/collective.pfg.userjoin/7ade30d07f94d2e127b780eb0cf2a9cd94a7152a/docs/collective.pfg.userjoin.0.1.0-04.png
    :alt: Adapter edit form
 
 You must properly configure the "*Userid form field*", where you must select the form field where you plan to
@@ -50,17 +50,17 @@ Please remember to enable the adapter in the PloneFormGen edit form.
 Advanced user configuration
 ---------------------------
 
-Your user configuration fieldset can be different from the Plone default, for example you can behave a complex
-configuration that ask for additional informations like (like phone number, or SSN).
+Your user configuration fieldset can be different from the Plone default, for example you can have a complex
+configuration that ask for additional informations like phone number, SSN, ...
 
-This product can handle this also by filling the "*Map additional user's data*" field.
+You can handle this by also filling the "*Map additional user's data*" field.
 For every user properties on the right you can select which form field (on the left) must be used to populate
-that user info. 
+that user info when the user will be finally created.
 
 Groups
 ------
 
-Finally you can configure the adapter for automatically add users to one or more groups when the join request
+You can configure the adapter to automatically add users to one or more groups when the join request
 will be confirmed.
 
 Manage join requests
@@ -68,18 +68,18 @@ Manage join requests
 
 By navigate to the adapter a list of join requests is provided.
 
+.. image:: https://raw.githubusercontent.com/PloneGov-IT/collective.pfg.userjoin/7ade30d07f94d2e127b780eb0cf2a9cd94a7152a/docs/collective.pfg.userjoin.0.1.0-02.png
+   :alt: Show join requests
+
 The table will recap all form fields that you included in the adapter configuration, showing values provided
 at the form submission.
 Please note that *every* form field provided is stored (you can preview all of the data by clicking on the userid link).
-
-.. image:: https://github.com/PloneGov/collective.pfg.userjoin/blob/---/docs/collective.pfg.userjoin.0.0.1-02.png
-   :alt: Show join requests
 
 Then you can *confirm* join requests, that means you will create one or more new members, or discard them deleting
 the data.
 
 As said above, this product will not handle passwords so after a request is confirmed the default site reset password
-feature is triggered: the user will receive the standard password reset mail.
+feature is triggered: the user will receive the standard password reset email.
 
 Advanced usage
 ==============
@@ -91,10 +91,15 @@ This product will not send any email so you probably like to use the standard Pl
 if you need to warn power user to evaluate new submissions.
 To help in this a ``@@join-detail`` view is provided.
 
-.. image:: https://github.com/PloneGov/collective.pfg.userjoin/blob/---/docs/collective.pfg.userjoin.0.0.1-03.png
+.. image:: https://raw.githubusercontent.com/PloneGov-IT/collective.pfg.userjoin/7ade30d07f94d2e127b780eb0cf2a9cd94a7152a/docs/collective.pfg.userjoin.0.1.0-03.png
    :alt: Show/Confirm a single join request
 
-The adapter will add two new request informations you can use in the mailer (adapter execution orders matters).
+The adapter will add two new request informations you can use in the mailer (adapter execution orders matters):
+
+ ``pfguserjoin_obj``
+     Adapter object
+ ``pfguserjoin_newid``
+     Record id of the request
 
 For example you can edit the "*Mail-Body Template*" as follow::
 
