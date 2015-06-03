@@ -96,10 +96,10 @@ To help in this a ``@@join-detail`` view is provided.
 
 The adapter will add two new request informations you can use in the mailer (adapter execution orders matters):
 
- ``pfguserjoin_obj``
-     Adapter object
- ``pfguserjoin_newid``
-     Record id of the request
+``pfguserjoin_obj``
+  Adapter object
+``pfguserjoin_newid``
+  Record id of the request
 
 For example you can edit the "*Mail-Body Template*" as follow::
 
@@ -131,13 +131,13 @@ Advanced security
 By default this add-on will limit dangerous features to Managers and Site administrators.
 Please note that a badly configured adapter can open your site to security issues.
 
- ``collective.pfg.userjoin: Edit Awkward Fields``
-     This permission is the one that controls who can edit problematic adapter fields
-     (user configuration, groups, ...)
- ``collective.pfg.userjoin: Manage Join Attempts``
-     This permission is the one that controls who can confirm join requests or discard them
- ``collective.pfg.userjoin: View Sentive Data``
-     By playing with this permission you can limit people able to see submitted data.
+``collective.pfg.userjoin: Edit Awkward Fields``
+  This permission is the one that controls who can edit problematic adapter fields
+  (user configuration, groups, ...)
+``collective.pfg.userjoin: Manage Join Attempts``
+  This permission is the one that controls who can confirm join requests or discard them
+``collective.pfg.userjoin: View Sentive Data``
+  By playing with this permission you can limit people able to see submitted data.
 
 Credits
 =======
