@@ -72,7 +72,7 @@
 	</tal:canedit>
     </form>
 
-    <p tal:condition="not:items">
+    <p tal:condition="not:items" i18n:translate="no_submitted_data">
         No subscribed user needs to be evaluated.
     </p>
 

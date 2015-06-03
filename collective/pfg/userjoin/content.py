@@ -46,7 +46,7 @@ UserJoinAdapterSchema = atapi.Schema((
         widget=atapi.SelectionWidget(
             label=_(u"Fullname form field"),
             description=_('fullname_field_help',
-                          default=u"Select the form field that hosts the user's fullname.\n"),
+                          default=u"Select the form field that hosts the user's fullname"),
         ),
     ),
 
@@ -81,7 +81,7 @@ UserJoinAdapterSchema = atapi.Schema((
                                             col_description=_('formfield_coldescription',
                                                               default=u"Select a field present in the form"),
                                             required=True),
-                 'userfield' : SelectColumn(_(u"Type of data"),
+                 'userfield' : SelectColumn(_(u"User field"),
                                             vocabulary="userFieldVocabulary",
                                             col_description=_('userfield_coldescription',
                                                               default=u"Select a user information to apply "
