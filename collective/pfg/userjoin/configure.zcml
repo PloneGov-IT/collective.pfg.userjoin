@@ -29,7 +29,7 @@
       name="default"
       title="collective.pfg.userjoin"
       directory="profiles/default"
-      description="A solution for manage signup attendance to events"
+      description="A PloneFormGen adapter for subscribe users to the site"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
