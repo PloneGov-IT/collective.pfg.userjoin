@@ -9,7 +9,7 @@ from Products.ATContentTypes.content.base import registerATCT
 from Products.Archetypes import atapi
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
 from Products.PloneFormGen.content.actionAdapter import FormAdapterSchema
-from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+from Products.CMFPlone.utils import base_hasattr
 from collective.pfg.userjoin import _
 from collective.pfg.userjoin import config
 from collective.pfg.userjoin.interfaces import IUserJoinAdapter

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from Products.Five.browser import BrowserView
-from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 from plone.protect import CheckAuthenticator
 from zExceptions import NotFound, Unauthorized
 from plone.memoize.view import memoize

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from AccessControl import ModuleSecurityInfo
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
 from collective.pfg.userjoin import config
